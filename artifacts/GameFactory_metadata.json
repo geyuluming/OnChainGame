@@ -1,0 +1,295 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_stakingVault",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "host",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "room",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "minPlayers",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxPlayers",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "minStake",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxStake",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "jokerCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256[10]",
+								"name": "cardCounts",
+								"type": "uint256[10]"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct GameRoom.GameConfig",
+						"name": "cfg",
+						"type": "tuple"
+					}
+				],
+				"name": "GameRoomCreated",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "minPlayers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxPlayers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minStake",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxStake",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "jokerCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[10]",
+						"name": "cardCounts",
+						"type": "uint256[10]"
+					}
+				],
+				"name": "createGameRoom",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "gameId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "room",
+								"type": "address"
+							}
+						],
+						"internalType": "struct GameFactory.CreateResult",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "gameConfigs",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "minPlayers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxPlayers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minStake",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxStake",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "jokerCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "gameIdCounter",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "gameRooms",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					}
+				],
+				"name": "getGameRoom",
+				"outputs": [
+					{
+						"internalType": "contract GameRoom",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stakingVault",
+				"outputs": [
+					{
+						"internalType": "contract StakingVault",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/GameFactory.sol": "GameFactory"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/GameFactory.sol": {
+			"keccak256": "0xceb62b8c356cfe3fa522e32cd9f8aa26ae32f584463c0518f7c6b34424fcfe86",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4aa06460f03e2bd17086407086ee26f30d0b1da063d2551cab9572ae07fa9e44",
+				"dweb:/ipfs/QmU3y7JeHP9Wf2JkK6XPuTinLjK5MbaJPsHH9zahCkqHHq"
+			]
+		},
+		"contracts/GameRoom.sol": {
+			"keccak256": "0x9de408a0f51d8b2284f594fb9d2110f06eea3ad8895483687f6bc7420e739673",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a467ee91ddad154243209b430f30c49b2ab3982eb2a1db863ae960f070108660",
+				"dweb:/ipfs/QmReyQT55PSe2YPj1bx1TdcmvPfszkuKx2MwCDwiApdxay"
+			]
+		},
+		"contracts/StakingVault.sol": {
+			"keccak256": "0x4758cd30684f6875f0b690f9d7eae1a404aea27875d04417bb436cb469654cd1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7a42c489dd8c06c906666a16c4aa919e5526eb0516a6da2e537e6fbc43211213",
+				"dweb:/ipfs/QmP8P5wRZAoPHyyytj73hAyxuJDmi1DTUKvwc5mP8n7Bqq"
+			]
+		}
+	},
+	"version": 1
+}

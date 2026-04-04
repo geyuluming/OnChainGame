@@ -1,0 +1,419 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_gameId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_stakingVault",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "minPlayers",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxPlayers",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "minStake",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxStake",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "jokerCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256[10]",
+								"name": "cardCounts",
+								"type": "uint256[10]"
+							}
+						],
+						"internalType": "struct GameRoom.GameConfig",
+						"name": "_config",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "cardNumber",
+						"type": "uint8"
+					}
+				],
+				"name": "CardTaken",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "losers",
+						"type": "address[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "winners",
+						"type": "address[]"
+					}
+				],
+				"name": "GameEnded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					}
+				],
+				"name": "GameStarted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "player",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "stakeAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "PlayerJoined",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "player",
+						"type": "address"
+					}
+				],
+				"name": "PlayerOut",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "config",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "minPlayers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxPlayers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minStake",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxStake",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "jokerCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "currentPlayerIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "gameId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "gameState",
+				"outputs": [
+					{
+						"internalType": "enum GameRoom.GameState",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "p",
+						"type": "address"
+					}
+				],
+				"name": "getPlayerCards",
+				"outputs": [
+					{
+						"internalType": "uint256[10]",
+						"name": "",
+						"type": "uint256[10]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "host",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "joinGame",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "playerData",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "stakeAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isOut",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "jokerCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "players",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stakingVault",
+				"outputs": [
+					{
+						"internalType": "contract StakingVault",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "cardNumber",
+						"type": "uint8"
+					}
+				],
+				"name": "takeCard",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"takeCard(address,uint8)": {
+					"params": {
+						"cardNumber": "0 = 小丑，1–10 = 数字牌（与手牌下标 0–9 对应）"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/GameRoom.sol": "GameRoom"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/GameRoom.sol": {
+			"keccak256": "0xb6a193f0fbc953520c26bc205f5fc90ce4084031ffd891c7025ba259c6f61c7f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://72b4b7c12c72c1f31623489d95d33a570865f5e44d637d6cd2ff22a5fed4115c",
+				"dweb:/ipfs/QmT9AT7y7nGWNLoEEVq4BunVz42e6MEyy1at2mRGGn3p4G"
+			]
+		},
+		"contracts/StakingVault.sol": {
+			"keccak256": "0x4758cd30684f6875f0b690f9d7eae1a404aea27875d04417bb436cb469654cd1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7a42c489dd8c06c906666a16c4aa919e5526eb0516a6da2e537e6fbc43211213",
+				"dweb:/ipfs/QmP8P5wRZAoPHyyytj73hAyxuJDmi1DTUKvwc5mP8n7Bqq"
+			]
+		}
+	},
+	"version": 1
+}
