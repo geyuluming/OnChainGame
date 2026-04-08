@@ -1,0 +1,81 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "randomWord",
+						"type": "uint256"
+					}
+				],
+				"name": "applyECVRFSeed",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "gameId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ecvrf/ECVRFRelay.sol": "IGameRoomEcvrf"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"contracts/ecvrf/ECVRFRelay.sol": {
+			"keccak256": "0xa9b1608004f68dabd8ce364d1c2912414eb5cc3afdd252f39f73c6a45a2046e7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://051d35843fed3c25ac0c006b2dabbca162d24ecc3ca5ffb8212a6f9d53931cc7",
+				"dweb:/ipfs/QmSjEjMc25Tepwj5AvPb1AErgXYBnLu7W1mzeRxxQYU3nn"
+			]
+		},
+		"contracts/ecvrf/IECVRFVerifier.sol": {
+			"keccak256": "0xd4e1f9a871fd2eabe89d871599f2d53c11127421859c07f970d55056acc42ffc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4573e56765bedd069e33548bcd007c00e44befdb50c9bbd9a9d8111a418b84d2",
+				"dweb:/ipfs/QmfJUkMq78CcN3CTYxzoQy9NWiYtzrD1nFpMTKFdw2yq6t"
+			]
+		}
+	},
+	"version": 1
+}

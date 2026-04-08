@@ -60,6 +60,7 @@ contract GameFactory {
             new GameRoom(
                 gameId,
                 payable(address(stakingVault)),
+                msg.sender,
                 cfg,
                 vrfCoordinator,
                 vrfSubId,

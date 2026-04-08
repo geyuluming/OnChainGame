@@ -1,0 +1,77 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "alpha",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "proof",
+						"type": "bytes"
+					},
+					{
+						"internalType": "uint256",
+						"name": "randomWord",
+						"type": "uint256"
+					}
+				],
+				"name": "verify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "链上 ECVRF 验证接口（可与预编译或完整 Solidity 实现对接；address(0) 表示不在链上验证明）",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ecvrf/IECVRFVerifier.sol": "IECVRFVerifier"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"contracts/ecvrf/IECVRFVerifier.sol": {
+			"keccak256": "0xd4e1f9a871fd2eabe89d871599f2d53c11127421859c07f970d55056acc42ffc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4573e56765bedd069e33548bcd007c00e44befdb50c9bbd9a9d8111a418b84d2",
+				"dweb:/ipfs/QmfJUkMq78CcN3CTYxzoQy9NWiYtzrD1nFpMTKFdw2yq6t"
+			]
+		}
+	},
+	"version": 1
+}

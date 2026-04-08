@@ -18,6 +18,11 @@
 						"type": "address"
 					},
 					{
+						"internalType": "address",
+						"name": "_roomOwner",
+						"type": "address"
+					},
+					{
 						"components": [
 							{
 								"internalType": "uint256",
@@ -53,6 +58,36 @@
 						"internalType": "struct GameRoom.GameConfig",
 						"name": "_config",
 						"type": "tuple"
+					},
+					{
+						"internalType": "address",
+						"name": "_vrfCoordinator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint64",
+						"name": "_vrfSubId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_vrfKeyHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "_vrfCallbackGasLimit",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint16",
+						"name": "_vrfRequestConfirmations",
+						"type": "uint16"
+					},
+					{
+						"internalType": "address",
+						"name": "_ecvrfRelay",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -81,6 +116,31 @@
 					}
 				],
 				"name": "CardTaken",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "room",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "alphaCommitment",
+						"type": "bytes32"
+					}
+				],
+				"name": "ECVRFRandomRequested",
 				"type": "event"
 			},
 			{
@@ -160,6 +220,38 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "VrfRandomRequested",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "randomWord",
+						"type": "uint256"
+					}
+				],
+				"name": "applyECVRFSeed",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "config",
 				"outputs": [
@@ -207,6 +299,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "ecvrfRelay",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "gameId",
 				"outputs": [
 					{
@@ -226,6 +331,19 @@
 						"internalType": "enum GameRoom.GameState",
 						"name": "",
 						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCurrentTurnPlayer",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -257,12 +375,57 @@
 			},
 			{
 				"inputs": [],
-				"name": "host",
+				"name": "getPlayerCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPlayers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTakeTarget",
 				"outputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "handDisplaySeed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -334,6 +497,37 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "randomWords",
+						"type": "uint256[]"
+					}
+				],
+				"name": "rawFulfillRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "roomOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "stakingVault",
 				"outputs": [
@@ -344,6 +538,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "startGame",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -368,10 +569,30 @@
 		"devdoc": {
 			"kind": "dev",
 			"methods": {
+				"getPlayerCount()": {
+					"details": "便于客户端快速显示人数"
+				},
+				"getPlayers()": {
+					"details": "RPC 不支持 eth_getLogs 时，客户端用此函数拉取玩家列表"
+				},
+				"getTakeTarget()": {
+					"details": "下家（顺时针下一位），用于抽牌目标"
+				},
+				"startGame()": {
+					"details": "未满员时，房主可在达到最小人数后手动开局"
+				},
 				"takeCard(address,uint8)": {
 					"params": {
-						"cardNumber": "0 = 小丑，1–10 = 数字牌（与手牌下标 0–9 对应）"
+						"cardNumber": "0 = 小丑（不可成对消除，仅转移），1–10 = 数字牌"
 					}
+				}
+			},
+			"stateVariables": {
+				"handDisplaySeed": {
+					"details": "客户端用此种子与当前手牌 multiset 做确定性洗牌，保证所有人看到的扇面顺序一致"
+				},
+				"roomOwner": {
+					"details": "创建房间的钱包地址，可调用 startGame"
 				}
 			},
 			"version": 1
@@ -392,18 +613,19 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
-		"remappings": []
+		"remappings": [],
+		"viaIR": true
 	},
 	"sources": {
 		"contracts/GameRoom.sol": {
-			"keccak256": "0xb6a193f0fbc953520c26bc205f5fc90ce4084031ffd891c7025ba259c6f61c7f",
+			"keccak256": "0xb05ba2782f338990c8cf4b5642a642506af37df298fa0e247e74a4b87f057ad5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://72b4b7c12c72c1f31623489d95d33a570865f5e44d637d6cd2ff22a5fed4115c",
-				"dweb:/ipfs/QmT9AT7y7nGWNLoEEVq4BunVz42e6MEyy1at2mRGGn3p4G"
+				"bzz-raw://64f6810f02b500b5983fcaad6230841397bbdb8aa950515d094989f527924251",
+				"dweb:/ipfs/QmbGKbNti91aiGCr7LwXDpA6ZikxMis8mu6cKE3dNCcZab"
 			]
 		},
 		"contracts/StakingVault.sol": {
@@ -412,6 +634,22 @@
 			"urls": [
 				"bzz-raw://7a42c489dd8c06c906666a16c4aa919e5526eb0516a6da2e537e6fbc43211213",
 				"dweb:/ipfs/QmP8P5wRZAoPHyyytj73hAyxuJDmi1DTUKvwc5mP8n7Bqq"
+			]
+		},
+		"contracts/vrf/IVRFCoordinatorV2.sol": {
+			"keccak256": "0x43b72496fe133226fb0e8450ed2d55202b3f5e4fb2bdb94657acd5ecbc2fdb86",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2c992fabb9061942ec72373d9ada7cce922bc38e38450f0cdac4fb1e705ae329",
+				"dweb:/ipfs/QmfTFN5KAUgRnwxG5ejkZSuzWAxHA9ECYjEbpgz9CDVrtp"
+			]
+		},
+		"contracts/vrf/OptionalVRFConsumer.sol": {
+			"keccak256": "0x6a68574f2ae78684c71f2b0a386d56ba219e9c14ba065d654bd47b321b09ad27",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c4988bfd247b97fd3b0af74a5fcd0f6c1707d676a207072b0c983b286c2c5af1",
+				"dweb:/ipfs/QmdKbUf5gVwUAH6QdJVBNrxz3x393XDMEpL5rM6Npq1xar"
 			]
 		}
 	},

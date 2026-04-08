@@ -1,0 +1,158 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_relayer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_verifier",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "room",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "gameId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "randomWord",
+						"type": "uint256"
+					}
+				],
+				"name": "RandomnessSubmitted",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "relayer",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "room",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "alpha",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "proof",
+						"type": "bytes"
+					},
+					{
+						"internalType": "uint256",
+						"name": "randomWord",
+						"type": "uint256"
+					}
+				],
+				"name": "submitRandomWord",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "verifier",
+				"outputs": [
+					{
+						"internalType": "contract IECVRFVerifier",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "链下用 brokerchain-academic/shard/vrf 同类算法（如 go-ecvrf Prove）生成 randomWord 与 proof，      再由此合约调用房间。verifier 为 0 时仅信任 relayer 地址（学术网/测试常用）；生产可接入真实 verify。",
+			"kind": "dev",
+			"methods": {
+				"submitRandomWord(address,bytes,bytes,uint256)": {
+					"params": {
+						"alpha": "必须与房间内约定的 abi.encode(gameId, room) 一致（与链下 Prove 输入一致）"
+					}
+				}
+			},
+			"title": "ECVRFRelay",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ecvrf/ECVRFRelay.sol": "ECVRFRelay"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"contracts/ecvrf/ECVRFRelay.sol": {
+			"keccak256": "0xa9b1608004f68dabd8ce364d1c2912414eb5cc3afdd252f39f73c6a45a2046e7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://051d35843fed3c25ac0c006b2dabbca162d24ecc3ca5ffb8212a6f9d53931cc7",
+				"dweb:/ipfs/QmSjEjMc25Tepwj5AvPb1AErgXYBnLu7W1mzeRxxQYU3nn"
+			]
+		},
+		"contracts/ecvrf/IECVRFVerifier.sol": {
+			"keccak256": "0xd4e1f9a871fd2eabe89d871599f2d53c11127421859c07f970d55056acc42ffc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4573e56765bedd069e33548bcd007c00e44befdb50c9bbd9a9d8111a418b84d2",
+				"dweb:/ipfs/QmfJUkMq78CcN3CTYxzoQy9NWiYtzrD1nFpMTKFdw2yq6t"
+			]
+		}
+	},
+	"version": 1
+}

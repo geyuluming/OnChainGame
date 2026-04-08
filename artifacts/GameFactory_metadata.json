@@ -110,6 +110,36 @@
 						"internalType": "uint256[10]",
 						"name": "cardCounts",
 						"type": "uint256[10]"
+					},
+					{
+						"internalType": "address",
+						"name": "vrfCoordinator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint64",
+						"name": "vrfSubId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "vrfKeyHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "vrfCallbackGasLimit",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint16",
+						"name": "vrfRequestConfirmations",
+						"type": "uint16"
+					},
+					{
+						"internalType": "address",
+						"name": "ecvrfRelay",
+						"type": "address"
 					}
 				],
 				"name": "createGameRoom",
@@ -260,26 +290,27 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
-		"remappings": []
+		"remappings": [],
+		"viaIR": true
 	},
 	"sources": {
 		"contracts/GameFactory.sol": {
-			"keccak256": "0xceb62b8c356cfe3fa522e32cd9f8aa26ae32f584463c0518f7c6b34424fcfe86",
+			"keccak256": "0xa3873d471a267df2e3eb18c1648fc1e48d76efb57cdb66d86a2ef03606fc6a8f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4aa06460f03e2bd17086407086ee26f30d0b1da063d2551cab9572ae07fa9e44",
-				"dweb:/ipfs/QmU3y7JeHP9Wf2JkK6XPuTinLjK5MbaJPsHH9zahCkqHHq"
+				"bzz-raw://e2ed01aec91d7da1ce68e1380f83ca3fe82c1ceb5c188ca1e74b7fecf2ce21a5",
+				"dweb:/ipfs/QmRr4nTNfAjHznXbfUfUyiJhv7K21Zo3fQfARomKCmqTtQ"
 			]
 		},
 		"contracts/GameRoom.sol": {
-			"keccak256": "0x9de408a0f51d8b2284f594fb9d2110f06eea3ad8895483687f6bc7420e739673",
+			"keccak256": "0xb05ba2782f338990c8cf4b5642a642506af37df298fa0e247e74a4b87f057ad5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a467ee91ddad154243209b430f30c49b2ab3982eb2a1db863ae960f070108660",
-				"dweb:/ipfs/QmReyQT55PSe2YPj1bx1TdcmvPfszkuKx2MwCDwiApdxay"
+				"bzz-raw://64f6810f02b500b5983fcaad6230841397bbdb8aa950515d094989f527924251",
+				"dweb:/ipfs/QmbGKbNti91aiGCr7LwXDpA6ZikxMis8mu6cKE3dNCcZab"
 			]
 		},
 		"contracts/StakingVault.sol": {
@@ -288,6 +319,22 @@
 			"urls": [
 				"bzz-raw://7a42c489dd8c06c906666a16c4aa919e5526eb0516a6da2e537e6fbc43211213",
 				"dweb:/ipfs/QmP8P5wRZAoPHyyytj73hAyxuJDmi1DTUKvwc5mP8n7Bqq"
+			]
+		},
+		"contracts/vrf/IVRFCoordinatorV2.sol": {
+			"keccak256": "0x43b72496fe133226fb0e8450ed2d55202b3f5e4fb2bdb94657acd5ecbc2fdb86",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2c992fabb9061942ec72373d9ada7cce922bc38e38450f0cdac4fb1e705ae329",
+				"dweb:/ipfs/QmfTFN5KAUgRnwxG5ejkZSuzWAxHA9ECYjEbpgz9CDVrtp"
+			]
+		},
+		"contracts/vrf/OptionalVRFConsumer.sol": {
+			"keccak256": "0x6a68574f2ae78684c71f2b0a386d56ba219e9c14ba065d654bd47b321b09ad27",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c4988bfd247b97fd3b0af74a5fcd0f6c1707d676a207072b0c983b286c2c5af1",
+				"dweb:/ipfs/QmdKbUf5gVwUAH6QdJVBNrxz3x393XDMEpL5rM6Npq1xar"
 			]
 		}
 	},
