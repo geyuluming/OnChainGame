@@ -1,0 +1,466 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\ecvrf\\ECVRFRelay.sol": {
+      "lastModificationDate": 1775785602197,
+      "contentHash": "965bfcdfdca1f143c90e0bcb8881ad38",
+      "sourceName": "contracts/ecvrf/ECVRFRelay.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IECVRFVerifier.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "ECVRFRelay",
+        "IGameRoomEcvrf"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\ecvrf\\IECVRFVerifier.sol": {
+      "lastModificationDate": 1775784967180,
+      "contentHash": "4f20e64a2be23fbdaa8e74dda214a32b",
+      "sourceName": "contracts/ecvrf/IECVRFVerifier.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "IECVRFVerifier"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\ecvrf\\Secp256k1Sha256TaiECVRFVerifier.sol": {
+      "lastModificationDate": 1775785596254,
+      "contentHash": "6e09ae52905f97dc0864f5afb650cedc",
+      "sourceName": "contracts/ecvrf/Secp256k1Sha256TaiECVRFVerifier.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IECVRFVerifier.sol",
+        "./vendor/Secp256k1Sha256TaiVRF.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "Secp256k1Sha256TaiECVRFVerifier"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\ecvrf\\vendor\\Secp256k1Sha256TaiVRF.sol": {
+      "lastModificationDate": 1775785588237,
+      "contentHash": "1b6a1690794bd627f5dbfee045e6fad9",
+      "sourceName": "contracts/ecvrf/vendor/Secp256k1Sha256TaiVRF.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./EllipticCurve.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "Secp256k1Sha256TaiVRF"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\ecvrf\\vendor\\EllipticCurve.sol": {
+      "lastModificationDate": 1775785554338,
+      "contentHash": "b648c8ff1ef01ce612ff77480eb00538",
+      "sourceName": "contracts/ecvrf/vendor/EllipticCurve.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "EllipticCurve"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\ecvrf\\NaiveECVRFVerifier.sol": {
+      "lastModificationDate": 1775785600179,
+      "contentHash": "b24c420bb517777c67081548c238fed1",
+      "sourceName": "contracts/ecvrf/NaiveECVRFVerifier.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IECVRFVerifier.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "NaiveECVRFVerifier"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\GameFactory.sol": {
+      "lastModificationDate": 1775743879830,
+      "contentHash": "229655cd69506aacc72208a8f8961bc1",
+      "sourceName": "contracts/GameFactory.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./StakingVault.sol",
+        "./GameRoom.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "GameFactory"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\GameRoom.sol": {
+      "lastModificationDate": 1775743867017,
+      "contentHash": "81f570015c220fa86d20b8de10e19625",
+      "sourceName": "contracts/GameRoom.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./StakingVault.sol",
+        "./vrf/OptionalVRFConsumer.sol",
+        "./vrf/IVRFCoordinatorV2.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "GameRoom"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\StakingVault.sol": {
+      "lastModificationDate": 1775784958920,
+      "contentHash": "2e1179aa3033d4c19260abc5250fbb97",
+      "sourceName": "contracts/StakingVault.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "StakingVault"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\vrf\\OptionalVRFConsumer.sol": {
+      "lastModificationDate": 1775786963456,
+      "contentHash": "75c8b089da6d224af747dec1784d731f",
+      "sourceName": "contracts/vrf/OptionalVRFConsumer.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "OptionalVRFConsumer"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\vrf\\IVRFCoordinatorV2.sol": {
+      "lastModificationDate": 1775786960513,
+      "contentHash": "eedc1504760d6c48c165bee6f4db2430",
+      "sourceName": "contracts/vrf/IVRFCoordinatorV2.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "IVRFCoordinatorV2"
+      ]
+    },
+    "E:\\A-grade4\\GraduationProject\\Project\\OnChainGame\\contracts\\mocks\\MockGameRoomEcvrf.sol": {
+      "lastModificationDate": 1775785616394,
+      "contentHash": "18ba1df37a59158bb5a8bf27ae476591",
+      "sourceName": "contracts/mocks/MockGameRoomEcvrf.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "MockGameRoomEcvrf"
+      ]
+    }
+  }
+}

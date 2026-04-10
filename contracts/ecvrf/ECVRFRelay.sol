@@ -27,7 +27,9 @@ contract ECVRFRelay {
     }
 
     /**
-     * @param alpha 必须与房间内约定的 abi.encode(gameId, room) 一致（与链下 Prove 输入一致）
+     * @param alpha 必须与房间内约定的 abi.encode(gameId, room) 一致（与链下 Prove 的 message 一致）
+     * @param proof Witnet/SECP256K1-SHA256-TAI 标准 81 字节：gamma_prefix+gamma_x(32)+c(16)+s(32)；若 verifier 为 Naive 则仅长度检查
+     * @param randomWord 真实验证下为 uint256(gammaToHash)；与链下 Prove 输出一致
      */
     function submitRandomWord(address room, bytes calldata alpha, bytes calldata proof, uint256 randomWord) external {
         if (address(verifier) == address(0)) {

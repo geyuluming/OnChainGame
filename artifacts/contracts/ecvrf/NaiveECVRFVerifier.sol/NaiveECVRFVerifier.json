@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "NaiveECVRFVerifier",
+  "sourceName": "contracts/ecvrf/NaiveECVRFVerifier.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "proof",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "randomWord",
+          "type": "uint256"
+        }
+      ],
+      "name": "verify",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080806040523460145760f4908161001a8239f35b600080fdfe6080806040526004361015601257600080fd5b60003560e01c634df90a0a14602657600080fd5b34608e576060366003190112608e5760043567ffffffffffffffff8111608e5760529036906004016093565b50506024359067ffffffffffffffff8211608e576051607660209336906004016093565b905014806084575b15158152f35b506044351515607e565b600080fd5b9181601f84011215608e5782359167ffffffffffffffff8311608e5760208381860195010111608e5756fea2646970667358221220782066006e13358feadc366929848c06b266d83a200a7533fbfdfd9b5124919364736f6c634300081a0033",
+  "deployedBytecode": "0x6080806040526004361015601257600080fd5b60003560e01c634df90a0a14602657600080fd5b34608e576060366003190112608e5760043567ffffffffffffffff8111608e5760529036906004016093565b50506024359067ffffffffffffffff8211608e576051607660209336906004016093565b905014806084575b15158152f35b506044351515607e565b600080fd5b9181601f84011215608e5782359167ffffffffffffffff8311608e5760208381860195010111608e5756fea2646970667358221220782066006e13358feadc366929848c06b266d83a200a7533fbfdfd9b5124919364736f6c634300081a0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

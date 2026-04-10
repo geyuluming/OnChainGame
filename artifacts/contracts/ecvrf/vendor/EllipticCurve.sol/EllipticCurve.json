@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "EllipticCurve",
+  "sourceName": "contracts/ecvrf/vendor/EllipticCurve.sol",
+  "abi": [],
+  "bytecode": "0x60808060405234601757603a9081601d823930815050f35b600080fdfe600080fdfea2646970667358221220ba8227e58c144787511ac129d9344e29ae06287b8057e071318b37c58d069e0e64736f6c634300081a0033",
+  "deployedBytecode": "0x600080fdfea2646970667358221220ba8227e58c144787511ac129d9344e29ae06287b8057e071318b37c58d069e0e64736f6c634300081a0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

@@ -89,6 +89,8 @@ contract GameRoom is OptionalVRFConsumer {
         p.stakeAmount = val;
         p.isActive = true;
         players.push(msg.sender);
+        // 质押资金即时记入 Vault，避免终局分配时 gamePools/gameStakes 为空导致回滚。
+        stakingVault.stakeFor{value: val}(gameId, msg.sender);
 
         emit PlayerJoined(gameId, msg.sender, val);
 
@@ -298,9 +300,17 @@ contract GameRoom is OptionalVRFConsumer {
         }
 
         require(w > 0, "!winners");
-
-        (bool sent, ) = address(stakingVault).call{value: address(this).balance}("");
-        require(sent, "!transfer");
+        // 兼容旧房间：如果历史版本把质押留在房间内，这里按玩家质押额补记到 Vault。
+        // 新版本 joinGame 已在入场时 stakeFor，因此一般 balance 为 0，不会重复记账。
+        if (address(this).balance > 0) {
+            for (uint i = 0; i < players.length; i++) {
+                address p = players[i];
+                uint256 amt = playerData[p].stakeAmount;
+                if (amt > 0) {
+                    stakingVault.stakeFor{value: amt}(gameId, p);
+                }
+            }
+        }
 
         stakingVault.distributeRewards(gameId, winners, losers);
         emit GameEnded(gameId, losers, winners);

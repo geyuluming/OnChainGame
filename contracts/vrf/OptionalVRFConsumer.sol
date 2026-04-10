@@ -24,7 +24,8 @@ abstract contract OptionalVRFConsumer {
     }
 
     function rawFulfillRandomWords(uint256 requestId, uint256[] memory randomWords) external virtual {
-        require(vrfCoordinator != address(0) && msg.sender == vrfCoordinator, "!coord");
+        require(vrfCoordinator != address(0), "vrf off");
+        require(msg.sender == vrfCoordinator, "only coordinator");
         fulfillRandomWords(requestId, randomWords);
     }
 
