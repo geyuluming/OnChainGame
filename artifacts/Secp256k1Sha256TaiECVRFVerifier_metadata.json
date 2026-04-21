@@ -1,0 +1,144 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_publicKeyX",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_publicKeyY",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "publicKeyX",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "publicKeyY",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "alpha",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "proof",
+						"type": "bytes"
+					},
+					{
+						"internalType": "uint256",
+						"name": "randomWord",
+						"type": "uint256"
+					}
+				],
+				"name": "verify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "与 Witnet vrf-solidity / 多数 SECP256K1-SHA256-TAI 链下 Prove 兼容。      proof 为 81 字节：压缩 Gamma(33) | c(16) | s(32)，与 Witnet decodeProof 一致。      randomWord 必须为 uint256(sha256(0xFE || 0x03 || compress(gamma)))，即 uint256(Secp256k1Sha256TaiVRF.gammaToHash(gx, gy))。",
+			"kind": "dev",
+			"methods": {},
+			"title": "Secp256k1Sha256TaiECVRFVerifier",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ecvrf/Secp256k1Sha256TaiECVRFVerifier.sol": "Secp256k1Sha256TaiECVRFVerifier"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"contracts/ecvrf/IECVRFVerifier.sol": {
+			"keccak256": "0xd4e1f9a871fd2eabe89d871599f2d53c11127421859c07f970d55056acc42ffc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4573e56765bedd069e33548bcd007c00e44befdb50c9bbd9a9d8111a418b84d2",
+				"dweb:/ipfs/QmfJUkMq78CcN3CTYxzoQy9NWiYtzrD1nFpMTKFdw2yq6t"
+			]
+		},
+		"contracts/ecvrf/Secp256k1Sha256TaiECVRFVerifier.sol": {
+			"keccak256": "0xa72afb9500f1b2037a1332f4422c5a7006529cbbe4d2f163195e61744ffb445a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0a49a20b8a97ee4fd6723bfcb4a6dc237d7e91a7835e5568e99fc5da5faf9126",
+				"dweb:/ipfs/QmcbinVLASMHfJS3811feKZvy9DHngTLo1J9SXLm2baBFe"
+			]
+		},
+		"contracts/ecvrf/vendor/EllipticCurve.sol": {
+			"keccak256": "0x5acd91527950828aa355e457fe49204c36e6c9a6884c55f49c357ab00de89c1d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ec9e044626ec9ad92b58640619ae934ebbda130a450a1be77dfed6722f932b52",
+				"dweb:/ipfs/QmT6F8kdfpZQbpCRbtXiZib1tsE4A6Nx9T6fETqtEBvfsN"
+			]
+		},
+		"contracts/ecvrf/vendor/Secp256k1Sha256TaiVRF.sol": {
+			"keccak256": "0xfe175bff7f8eaac60b12587da64a1103e39733e01e9c63b30b311ef70bf372df",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://516954861f718f078f43b15852eb21af8d4660e9d44721ab7241f80be5078e02",
+				"dweb:/ipfs/Qmer8HUxHQyGvS521F8FaCMWY8z5QcEjPmuTKFaNrSQr6p"
+			]
+		}
+	},
+	"version": 1
+}

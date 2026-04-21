@@ -30,11 +30,6 @@ contract GameFactory {
         uint256 maxStake,
         uint256 jokerCount,
         uint256[10] calldata cardCounts,
-        address vrfCoordinator,
-        uint64 vrfSubId,
-        bytes32 vrfKeyHash,
-        uint32 vrfCallbackGasLimit,
-        uint16 vrfRequestConfirmations,
         address ecvrfRelay
     ) external returns (CreateResult memory) {
         _validate(
@@ -57,18 +52,7 @@ contract GameFactory {
         });
 
         address room = address(
-            new GameRoom(
-                gameId,
-                payable(address(stakingVault)),
-                msg.sender,
-                cfg,
-                vrfCoordinator,
-                vrfSubId,
-                vrfKeyHash,
-                vrfCallbackGasLimit,
-                vrfRequestConfirmations,
-                ecvrfRelay
-            )
+            new GameRoom(gameId, payable(address(stakingVault)), msg.sender, cfg, ecvrfRelay)
         );
         gameRooms[gameId] = room;
         gameConfigs[gameId] = cfg;

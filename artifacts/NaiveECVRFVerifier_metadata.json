@@ -1,0 +1,85 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "proof",
+						"type": "bytes"
+					},
+					{
+						"internalType": "uint256",
+						"name": "randomWord",
+						"type": "uint256"
+					}
+				],
+				"name": "verify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "仅用于本地/单元测试：不验椭圆曲线，只检查 proof 长度与 randomWord 非零。生产请用 Secp256k1Sha256TaiECVRFVerifier。",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ecvrf/NaiveECVRFVerifier.sol": "NaiveECVRFVerifier"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"contracts/ecvrf/IECVRFVerifier.sol": {
+			"keccak256": "0xd4e1f9a871fd2eabe89d871599f2d53c11127421859c07f970d55056acc42ffc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4573e56765bedd069e33548bcd007c00e44befdb50c9bbd9a9d8111a418b84d2",
+				"dweb:/ipfs/QmfJUkMq78CcN3CTYxzoQy9NWiYtzrD1nFpMTKFdw2yq6t"
+			]
+		},
+		"contracts/ecvrf/NaiveECVRFVerifier.sol": {
+			"keccak256": "0x9bf9cd38d2b8c34bef3354543dd9ade146c71549fe76fd17f3a93586fcd01f66",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://dd231628b2a870011b8961817c66a0757a05b8a7ab84076fae438e47c2efdbd7",
+				"dweb:/ipfs/QmeyY7DPn6W3eaatvwnhEXLRC4ckkeCSxHxFNqu9Ym5EL9"
+			]
+		}
+	},
+	"version": 1
+}

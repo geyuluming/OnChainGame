@@ -2,10 +2,8 @@
 pragma solidity ^0.8.26;
 
 import "./StakingVault.sol";
-import "./vrf/OptionalVRFConsumer.sol";
-import "./vrf/IVRFCoordinatorV2.sol";
 
-contract GameRoom is OptionalVRFConsumer {
+contract GameRoom {
     enum GameState { PENDING, DEALING, PLAYING, ENDED }
 
     struct GameConfig {
@@ -43,7 +41,6 @@ contract GameRoom is OptionalVRFConsumer {
 
     event PlayerJoined(uint256 indexed gameId, address indexed player, uint256 stakeAmount);
     event GameStarted(uint256 indexed gameId);
-    event VrfRandomRequested(uint256 indexed gameId, uint256 requestId);
     event ECVRFRandomRequested(uint256 indexed gameId, address indexed room, bytes32 alphaCommitment);
     event CardTaken(address indexed from, address indexed to, uint8 cardNumber);
     event PlayerOut(address indexed player);
@@ -54,16 +51,10 @@ contract GameRoom is OptionalVRFConsumer {
         address payable _stakingVault,
         address _roomOwner,
         GameConfig memory _config,
-        address _vrfCoordinator,
-        uint64 _vrfSubId,
-        bytes32 _vrfKeyHash,
-        uint32 _vrfCallbackGasLimit,
-        uint16 _vrfRequestConfirmations,
         address _ecvrfRelay
-    ) OptionalVRFConsumer(_vrfCoordinator, _vrfSubId, _vrfKeyHash, _vrfCallbackGasLimit, _vrfRequestConfirmations) {
+    ) {
         require(_stakingVault != address(0), "!vault");
         require(_roomOwner != address(0), "!owner");
-        require(!(_vrfCoordinator != address(0) && _ecvrfRelay != address(0)), "!two randomness");
         gameId = _gameId;
         stakingVault = StakingVault(_stakingVault);
         config = _config;
@@ -110,17 +101,7 @@ contract GameRoom is OptionalVRFConsumer {
 
     function _beginStartSequence() internal {
         require(players.length >= config.minPlayers, "!enough");
-        if (vrfCoordinator != address(0)) {
-            gameState = GameState.DEALING;
-            uint256 requestId = IVRFCoordinatorV2(vrfCoordinator).requestRandomWords(
-                vrfKeyHash,
-                vrfSubId,
-                vrfRequestConfirmations,
-                vrfCallbackGasLimit,
-                1
-            );
-            emit VrfRandomRequested(gameId, requestId);
-        } else if (ecvrfRelay != address(0)) {
+        if (ecvrfRelay != address(0)) {
             gameState = GameState.DEALING;
             bytes32 commit = keccak256(abi.encode(gameId, address(this)));
             emit ECVRFRandomRequested(gameId, address(this), commit);
@@ -140,15 +121,6 @@ contract GameRoom is OptionalVRFConsumer {
         gameState = GameState.PLAYING;
         _shuffleAndDealFromVrfSeed(randomWord);
         _setHandDisplaySeeds(randomWord);
-        emit GameStarted(gameId);
-    }
-
-    function fulfillRandomWords(uint256, uint256[] memory randomWords) internal override {
-        require(gameState == GameState.DEALING, "!dealing");
-        require(randomWords.length >= 1, "!words");
-        gameState = GameState.PLAYING;
-        _shuffleAndDealFromVrfSeed(randomWords[0]);
-        _setHandDisplaySeeds(randomWords[0]);
         emit GameStarted(gameId);
     }
 
@@ -232,12 +204,22 @@ contract GameRoom is OptionalVRFConsumer {
         return deck;
     }
 
+    /// @dev 是否仍持有任意可展示/可被抽的牌（数字或小丑）
+    function _hasAnyCard(address p) internal view returns (bool) {
+        if (playerData[p].jokerCount > 0) return true;
+        for (uint8 j = 0; j < 10; j++) {
+            if (playerData[p].handCards[j] > 0) return true;
+        }
+        return false;
+    }
+
     /// @param cardNumber 0 = 小丑（不可成对消除，仅转移），1–10 = 数字牌
     function takeCard(address target, uint8 cardNumber) external {
         require(gameState == GameState.PLAYING, "!playing");
         require(players[currentPlayerIndex] == msg.sender, "!turn");
-        require(!playerData[msg.sender].isOut, "out");
         require(target != address(0), "!target");
+        // 手牌已空者应观战，不得再作为行动方抽牌
+        require(_hasAnyCard(msg.sender), "!empty");
 
         if (cardNumber == 0) {
             require(playerData[target].jokerCount > 0, "no joker");
@@ -255,7 +237,16 @@ contract GameRoom is OptionalVRFConsumer {
             emit CardTaken(target, msg.sender, cardNumber);
         }
 
-        _nextTurn();
+        if (!_hasAnyCard(target)) {
+            playerData[target].isOut = true;
+            emit PlayerOut(target);
+        }
+        if (!_hasAnyCard(msg.sender)) {
+            playerData[msg.sender].isOut = true;
+            emit PlayerOut(msg.sender);
+        }
+
+        _advanceTurnSkipEmpty();
         if (_allPlayersNoNumberCards()) _endGame();
     }
 
@@ -264,9 +255,14 @@ contract GameRoom is OptionalVRFConsumer {
         if (cnt >= 2) playerData[player].handCards[idx] = cnt % 2;
     }
 
-    function _nextTurn() internal {
-        if (players.length == 0) return;
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    /// @dev 轮到顺时针下一位「仍持有至少一张牌」的玩家；已清空手牌者仅观战不参与轮转
+    function _advanceTurnSkipEmpty() internal {
+        uint256 n = players.length;
+        if (n == 0) return;
+        for (uint256 step = 0; step < n; step++) {
+            currentPlayerIndex = (currentPlayerIndex + 1) % n;
+            if (_hasAnyCard(players[currentPlayerIndex])) return;
+        }
     }
 
     /// @dev 所有玩家数字牌张数均为 0 时终局；有小丑者输，无小丑者赢并按质押分池
@@ -325,12 +321,17 @@ contract GameRoom is OptionalVRFConsumer {
         return players[currentPlayerIndex];
     }
 
-    /// @dev 下家（顺时针下一位），用于抽牌目标
+    /// @dev 抽牌目标：从当前回合玩家顺时针找第一位「仍有牌」的玩家（跳过已清空手牌的观战者）
     function getTakeTarget() external view returns (address) {
         uint256 n = players.length;
         if (n < 2) return address(0);
         uint256 idx = (currentPlayerIndex + 1) % n;
-        return players[idx];
+        for (uint256 k = 0; k < n; k++) {
+            address t = players[idx];
+            if (_hasAnyCard(t)) return t;
+            idx = (idx + 1) % n;
+        }
+        return address(0);
     }
 
     /// @dev RPC 不支持 eth_getLogs 时，客户端用此函数拉取玩家列表
